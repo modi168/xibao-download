@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百万家访连续4周破零喜报下载</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #7a0c0c 0%, #a01414 40%, #c22323 100%);
+    min-height: 100vh;
+    color: #fff;
+  }
+  .header {
+    text-align: center;
+    padding: 36px 16px 20px;
+  }
+  .header h1 {
+    font-size: 30px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    background: linear-gradient(180deg, #ffe9a8 0%, #ffd35c 45%, #f5b81a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+  .header p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ffd9a0;
+    letter-spacing: 2px;
+  }
+  .tip {
+    max-width: 760px;
+    margin: 0 auto 22px;
+    padding: 10px 16px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 10px;
+    font-size: 13px;
+    color: #ffe9c2;
+    text-align: center;
+    line-height: 1.7;
+  }
+  .grid {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 16px 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,215,120,.35);
+    border-radius: 12px;
+    padding: 16px 10px;
+    text-align: center;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 74px;
+  }
+  .card.ready { cursor: pointer; }
+  .card.ready:hover {
+    transform: translateY(-3px);
+    background: rgba(255,235,150,.20);
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  }
+  .card .name {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  .card .sub {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #ffd98a;
+  }
+  .card .badge {
+    margin-top: 8px;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    letter-spacing: 1px;
+  }
+  .card.ready .badge {
+    background: #ffd35c;
+    color: #7a0c0c;
+    font-weight: 600;
+  }
+  .card.empty .badge {
+    background: rgba(255,255,255,.18);
+    color: #ffd9a0;
+  }
+  .footer {
+    text-align: center;
+    padding: 18px;
+    font-size: 12px;
+    color: rgba(255,255,255,.6);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>百万家访连续4周破零喜报</h1>
+    <p>智慧家庭支撑中心</p>
+  </div>
+  <div class="tip">
+    请选择您所在的分公司，点击名称即可下载对应的喜报图片。<br>
+    图片较大，加载需稍等片刻，下载完成后请在相册 / 文件管理中查看。
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="footer">— 智慧家庭支撑中心 · 2026 —</div>
+
+<script>
+  // 分公司列表：有图片的填图片文件名，未生成的填 null
+  const companies = [
+    { name: "成华",   img: "images/成华.png" },
+    { name: "金牛",   img: null },
+    { name: "青羊",   img: null },
+    { name: "武侯",   img: null },
+    { name: "高新",   img: null },
+    { name: "锦江",   img: null },
+    { name: "双流",   img: null },
+    { name: "天府新区", img: null },
+    { name: "温江",   img: null },
+    { name: "新都",   img: null },
+    { name: "龙泉",   img: null },
+    { name: "郫都",   img: null },
+    { name: "大邑",   img: null },
+    { name: "邛崃",   img: null },
+    { name: "彭州",   img: null },
+    { name: "青白江", img: null },
+    { name: "都江堰", img: null },
+    { name: "崇州",   img: "images/崇州.png" },
+    { name: "新津",   img: null },
+    { name: "蒲江",   img: null },
+    { name: "东部新区", img: null },
+    { name: "金堂",   img: null },
+    { name: "简阳",   img: null }
+  ];
+
+  const grid = document.getElementById('grid');
+
+  companies.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'card' + (c.img ? ' ready' : ' empty');
+
+    if (c.img) {
+      div.addEventListener('click', function() {
+        const a = document.createElement('a');
+        a.href = c.img;
+        a.download = c.name + '-百万家访喜报.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+      div.innerHTML = '<div class="name">' + c.name + '</div>' +
+                      '<div class="badge">点击下载</div>';
+    } else {
+      div.innerHTML = '<div class="name">' + c.name + '</div>' +
+        '<div class="badge">喜报生成中</div>';
+    }
+    grid.appendChild(div);
+  });
+</script>
+</body>
+</html>
