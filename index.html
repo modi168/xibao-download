@@ -122,7 +122,7 @@
 <script>
   // 分公司列表：有图片的填图片文件名，未生成的填 null
   const companies = [
-    { name: "成华",   img: "images/成华.png" },
+    { name: "成华",   img: "images/成华.jpg" },
     { name: "金牛",   img: null },
     { name: "青羊",   img: null },
     { name: "武侯",   img: null },
@@ -139,7 +139,7 @@
     { name: "彭州",   img: null },
     { name: "青白江", img: null },
     { name: "都江堰", img: null },
-    { name: "崇州",   img: "images/崇州.png" },
+    { name: "崇州",   img: "images/崇州.jpg" },
     { name: "新津",   img: null },
     { name: "蒲江",   img: null },
     { name: "东部新区", img: null },
@@ -157,7 +157,7 @@
       div.addEventListener('click', function() {
         const a = document.createElement('a');
         a.href = c.img;
-        a.download = c.name + '-百万家访喜报.png';
+        a.download = c.name + '-百万家访喜报.jpg';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
